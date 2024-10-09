@@ -2,6 +2,7 @@ package br.com.rasfood.service.teste;
 
 import br.com.rasfood.dao.CardapioDao;
 import br.com.rasfood.entity.Cardapio;
+import br.com.rasfood.entity.Categoria;
 import br.com.rasfood.utils.JPAutils;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,15 @@ import java.math.BigDecimal;
 
 public class CardapioService {
     public static void main(String[] args) {
+        EntityManager em = JPAutils.getEntityManagerrestaurante();
+
+
+    }
+    private static  void cadastrarCategoria(EntityManager em){
+
+    }
+
+    private static void cadastrarProdutoCardapio(EntityManager em, Categoria categoria){
         Cardapio risoto = new Cardapio();
         risoto.setNome("Risoto de frutos do mar");
         risoto.setDescricao("Risoto acompanhado de polvo e mariscos");
@@ -21,19 +31,14 @@ public class CardapioService {
         salmao.setDisponivel(true);
         salmao.setValor(BigDecimal.valueOf(60.00));
 
-        EntityManager em = JPAutils.getEntityManagerrestaurante();
+
         CardapioDao cardapioDao = new CardapioDao(em);
         em.getTransaction().begin();
         cardapioDao.cadastrar(risoto);
-        em.flush();
         cardapioDao.cadastrar(salmao);
-        em.flush();
-        em.clear();
-        salmao.setValor(BigDecimal.valueOf(30.00));
-        em.merge(salmao);
+        em.getTransaction().commit();
+        em.close();
+
         System.out.println(cardapioDao.consultar(2));
-
-
-
     }
 }
