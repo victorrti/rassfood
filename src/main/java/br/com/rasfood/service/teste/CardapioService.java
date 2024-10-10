@@ -17,8 +17,11 @@ public class CardapioService {
         Mock.cadastrarCategoria(em);
         Mock.cadastrarProdutoCardapio(em);
         CardapioDao cardapioDao = new CardapioDao(em);
+
         cardapioDao.consultarForValor(BigDecimal.valueOf(35.00))
                 .stream().peek(System.out::println).collect(Collectors.toList());
+
+        System.out.println(cardapioDao.consultarForNome("laSanhA"));
 
 
     }

@@ -4,6 +4,8 @@ import br.com.rasfood.entity.Cardapio;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class CardapioDao {
@@ -30,14 +32,35 @@ public class CardapioDao {
     }
 
     public List<Cardapio> findAll(){
-        String sql = "SELECT c FROM Cardapio c";
-        return this.entityManager.createQuery(sql,Cardapio.class).getResultList();
+        try {
+            String sql = "SELECT c FROM Cardapio c";
+            return this.entityManager.createQuery(sql, Cardapio.class).getResultList();
+        }catch (Exception e){
+            return Collections.emptyList();
+        }
     }
 
     public List<Cardapio> consultarForValor(BigDecimal valor){
-    String sql = "SELECT c FROM Cardapio c WHERE c.valor = :valor";
-    return this.entityManager.createQuery(sql,Cardapio.class)
-            .setParameter("valor",valor)
-            .getResultList();
+        try{
+            String sql = "SELECT c FROM Cardapio c WHERE c.valor = :valor";
+            return this.entityManager.createQuery(sql,Cardapio.class)
+                    .setParameter("valor",valor)
+                    .getResultList();
+
+        }catch (Exception e){
+            return Collections.emptyList();
+        }
+
+
+    }
+    public Cardapio consultarForNome(String nome){
+        try {
+            String sql = "SELECT c FROM Cardapio c WHERE UPPER(c.nome) = UPPER(:nome)";
+            return this.entityManager.createQuery(sql, Cardapio.class)
+                    .setParameter("nome", nome)
+                    .getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
     }
 }

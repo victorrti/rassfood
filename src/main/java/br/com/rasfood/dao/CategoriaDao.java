@@ -13,6 +13,8 @@ public class CategoriaDao {
         this.entityManager =entityManager;
     }
 
+
+
     public void cadastrar(Categoria categoria){
         this.entityManager.persist(categoria);
         System.out.println(categoria.getId());
@@ -31,6 +33,7 @@ public class CategoriaDao {
     }
 
     public List<Categoria> findAll(){
+
         String sql = "SELECT c FROM Categoria c";
         return this.entityManager.createQuery(sql,Categoria.class).getResultList();
     }
