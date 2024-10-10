@@ -69,15 +69,24 @@ public class Cardapio {
         this.dataCriacao = dataCriacao;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
     public String toString() {
-        return "Prato{" +
+        return "Cardapio{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", disponivel=" + disponivel +
                 ", valor=" + valor +
                 ", dataCriacao=" + dataCriacao +
+                ", categoria=" + categoria +
                 '}';
     }
 }
