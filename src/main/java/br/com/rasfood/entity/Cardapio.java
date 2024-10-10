@@ -3,6 +3,7 @@ package br.com.rasfood.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="cardapio")
@@ -18,6 +19,9 @@ public class Cardapio {
     private LocalDateTime dataCriacao = LocalDateTime.now();
     @ManyToOne
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "cardapio")
+    private List<OrdemCardapio> listaOrdemCardapio;
 
     public Cardapio(){}
 
@@ -77,16 +81,13 @@ public class Cardapio {
         this.categoria = categoria;
     }
 
-    @Override
-    public String toString() {
-        return "Cardapio{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", disponivel=" + disponivel +
-                ", valor=" + valor +
-                ", dataCriacao=" + dataCriacao +
-                ", categoria=" + categoria +
-                '}';
+    public List<OrdemCardapio> getListaOrdemCardapio() {
+        return listaOrdemCardapio;
     }
+
+    public void setListaOrdemCardapio(List<OrdemCardapio> listaOrdemCardapio) {
+        this.listaOrdemCardapio = listaOrdemCardapio;
+    }
+
+
 }

@@ -1,15 +1,16 @@
 package br.com.rasfood.service.teste;
 
 import br.com.rasfood.dao.CardapioDao;
-import br.com.rasfood.dao.CategoriaDao;
-import br.com.rasfood.entity.Cardapio;
-import br.com.rasfood.entity.Categoria;
+
 import br.com.rasfood.utils.JPAutils;
 import br.com.rasfood.utils.Mock;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
+
+
+
 
 public class CardapioService {
     public static void main(String[] args) {

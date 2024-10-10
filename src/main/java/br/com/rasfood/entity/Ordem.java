@@ -5,6 +5,7 @@ import net.bytebuddy.asm.Advice;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="ordens")
@@ -15,15 +16,17 @@ public class Ordem {
     @Column(name="valor_total")
     private BigDecimal valorTotal;
     @Column(name="data_de_criacao")
-    private LocalDate dataCriacao;
+    private LocalDate dataCriacao = LocalDate.now();
     @ManyToOne
     private Cliente cliente;
 
+    @OneToMany(mappedBy = "ordem")
+    private List<OrdemCardapio> listaOrdemCardapio;
+
     public Ordem(){}
 
-    public Ordem(BigDecimal valorTotal, LocalDate dataCriacao, Cliente cliente) {
-        this.valorTotal = valorTotal;
-        this.dataCriacao = dataCriacao;
+    public Ordem(Cliente cliente) {
+
         this.cliente = cliente;
     }
 
@@ -59,6 +62,14 @@ public class Ordem {
         this.cliente = cliente;
     }
 
+    public List<OrdemCardapio> getListaOrdemCardapio() {
+        return listaOrdemCardapio;
+    }
+
+    public void setListaOrdemCardapio(List<OrdemCardapio> listaOrdemCardapio) {
+        this.listaOrdemCardapio = listaOrdemCardapio;
+    }
+
     @Override
     public String toString() {
         return "Ordem{" +
@@ -66,6 +77,7 @@ public class Ordem {
                 ", valorTotal=" + valorTotal +
                 ", dataCriacao=" + dataCriacao +
                 ", cliente=" + cliente +
+                ", listaOrdemCardapio=" + listaOrdemCardapio +
                 '}';
     }
 }
