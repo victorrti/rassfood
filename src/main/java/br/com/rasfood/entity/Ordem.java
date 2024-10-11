@@ -5,6 +5,7 @@ import net.bytebuddy.asm.Advice;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class Ordem {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "ordem")
-    private List<OrdemCardapio> listaOrdemCardapio;
+    private List<OrdemCardapio> listaOrdemCardapio = new ArrayList<OrdemCardapio>();
 
     public Ordem(){}
 
@@ -68,6 +69,11 @@ public class Ordem {
 
     public void setListaOrdemCardapio(List<OrdemCardapio> listaOrdemCardapio) {
         this.listaOrdemCardapio = listaOrdemCardapio;
+    }
+
+    public void addOrdemCardapio(OrdemCardapio ordemCardapio){
+        ordemCardapio.setOrdem(this);
+        this.listaOrdemCardapio.add(ordemCardapio);
     }
 
     @Override

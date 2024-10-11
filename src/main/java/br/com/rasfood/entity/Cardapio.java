@@ -3,6 +3,7 @@ package br.com.rasfood.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class Cardapio {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "cardapio")
-    private List<OrdemCardapio> listaOrdemCardapio;
+    private List<OrdemCardapio> listaOrdemCardapio = new ArrayList<OrdemCardapio>();
 
     public Cardapio(){}
 
