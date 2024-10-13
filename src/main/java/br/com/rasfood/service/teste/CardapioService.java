@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class CardapioService {
     public static void main(String[] args) {
         EntityManager em = JPAutils.getEntityManagerrestaurante();
+        em.getTransaction().begin();
         Mock.cadastrarCategoria(em);
         Mock.cadastrarProdutoCardapio(em);
         CardapioDao cardapioDao = new CardapioDao(em);

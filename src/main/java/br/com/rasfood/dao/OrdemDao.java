@@ -12,9 +12,9 @@ public class OrdemDao {
     public OrdemDao(EntityManager entityManager){
         this.entityManager = entityManager;
     }
-    public void cadastrar(Categoria categoria){
-        this.entityManager.persist(categoria);
-        System.out.println(categoria.getId());
+    public void cadastrar(Ordem ordem){
+        this.entityManager.persist(ordem);
+        System.out.println(ordem.getId());
     }
 
     public Ordem consultar(Integer id){

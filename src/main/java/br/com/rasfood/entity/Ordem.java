@@ -15,13 +15,13 @@ public class Ordem {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name="valor_total")
-    private BigDecimal valorTotal;
+    private BigDecimal valorTotal = BigDecimal.valueOf(0.0);
     @Column(name="data_de_criacao")
     private LocalDate dataCriacao = LocalDate.now();
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "ordem")
+    @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
     private List<OrdemCardapio> listaOrdemCardapio = new ArrayList<OrdemCardapio>();
 
     public Ordem(){}

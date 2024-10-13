@@ -1,5 +1,6 @@
 package br.com.rasfood.service.teste;
 
+import br.com.rasfood.entity.Cliente;
 import br.com.rasfood.utils.JPAutils;
 import br.com.rasfood.utils.Mock;
 
@@ -11,5 +12,7 @@ public class OrdemService {
         entityManager.getTransaction().begin();
         Mock.cadastrarCategoria(entityManager);
         Mock.cadastrarProdutoCardapio(entityManager);
+        Mock.PopularClientes(entityManager);
+        Mock.pupularOrdem(entityManager);
     }
 }

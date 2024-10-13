@@ -1,6 +1,8 @@
 package br.com.rasfood.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="nome")
@@ -11,6 +13,8 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String cep;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Cliente(){}
 
@@ -52,6 +56,14 @@ public class Cliente {
         this.cep = cep;
     }
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -59,6 +71,7 @@ public class Cliente {
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", cep='" + cep + '\'' +
+                ", enderecos=" + enderecos +
                 '}';
     }
 }
