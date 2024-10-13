@@ -23,6 +23,10 @@ public class Cliente {
         this.cpf = cpf;
         this.cep = cep;
     }
+    public void addEndereco(Endereco endereco){
+        endereco.setCliente(this);
+        this.getEnderecos().add(endereco);
+    }
 
     public Integer getId() {
         return id;
