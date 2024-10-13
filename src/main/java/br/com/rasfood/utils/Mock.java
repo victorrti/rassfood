@@ -95,7 +95,7 @@ public class Mock {
         victor.setNome("Victor");
         victor.setCpf("11111111111");
         victor.setCep("112123345");
-        Endereco endereco = new Endereco("rua dos devs","222","222222222","bairro dos devs","cidade dos devs","DV",victor);
+        Endereco endereco = new Endereco("rua dos scrum","111","111111111","bairro dos scrum","cidade dos scrum","DV",victor);
         victor.addEndereco(endereco);
         clienteDao.cadastrar(victor);
         Cliente vanessa = new Cliente();
@@ -109,14 +109,14 @@ public class Mock {
         pedro.setNome("Pedro");
         pedro.setCpf("333333333");
         pedro.setCep("456789876");
-        Endereco  enderecoPedro= new Endereco("rua dos devs","222","222222222","bairro dos devs","cidade dos devs","DV",victor);
+        Endereco  enderecoPedro= new Endereco("rua dos testes","333","333333333","bairro dos testes","cidade dos testes","DV",victor);
         pedro.addEndereco(enderecoPedro);
         clienteDao.cadastrar(pedro);
         Cliente jessica = new Cliente();
         jessica.setNome("jessica");
         jessica.setCpf("444444444");
         jessica.setCep("123345676");
-        Endereco  enderecoJessica= new Endereco("rua dos devs","222","222222222","bairro dos devs","cidade dos devs","DV",victor);
+        Endereco  enderecoJessica= new Endereco("rua dos product","444","444444444","bairro dos product","cidade dos product","DV",victor);
         jessica.addEndereco(enderecoJessica);
         clienteDao.cadastrar(jessica);
         em.flush();
