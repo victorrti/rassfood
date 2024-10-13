@@ -18,7 +18,7 @@ public class Ordem {
     private BigDecimal valorTotal = BigDecimal.valueOf(0.0);
     @Column(name="data_de_criacao")
     private LocalDate dataCriacao = LocalDate.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)

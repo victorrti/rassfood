@@ -18,7 +18,7 @@ public class Cardapio {
     private BigDecimal valor;
     @Column(name="data_de_criacao")
     private LocalDateTime dataCriacao = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
     @OneToMany(mappedBy = "cardapio")

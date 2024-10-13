@@ -132,6 +132,7 @@ public class Mock {
         List<Cliente> clientes =  clienteDao.findAll();
         for(Cliente cliente : clientes){
             Ordem ordem = new Ordem();
+            ordem.setCliente(cliente);
             List<Cardapio> cardapios = cardapioDao.findAll();
             for(Cardapio cardapio : cardapios){
                 OrdemCardapio ordemCardapio = new OrdemCardapio();

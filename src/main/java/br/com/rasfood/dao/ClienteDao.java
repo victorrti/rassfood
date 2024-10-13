@@ -52,4 +52,9 @@ public class ClienteDao {
             return null;
         }
     }
+
+    public List<Cliente> clientesBynome(String nome){
+        String jpql = "SELECT c FROM Cliente c WHERE UPPER(c.nome) LIKE UPPER(:nome)";
+        return this.entityManager.createQuery(jpql,Cliente.class).setParameter("nome","%"+nome+"%").getResultList();
+    }
 }

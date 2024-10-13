@@ -3,6 +3,7 @@ package br.com.rasfood.dao;
 import br.com.rasfood.entity.Categoria;
 import br.com.rasfood.entity.Ordem;
 import br.com.rasfood.entity.OrdemCardapio;
+import br.com.rasfood.vo.ItensPrincipaisVO;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -37,13 +38,26 @@ public class OrdemDao {
         return this.entityManager.createQuery(sql,Ordem.class).getResultList();
     }
 
-    public List<Object[]> consultarItensMaisVendidos(){
-        String sql = " SELECT SUM(oc.quantidade),c.nome FROM Ordem o " +
+    public List<ItensPrincipaisVO> consultarItensMaisVendidos(){
+        String sql = " SELECT New br.com.rasfood.vo.ItensPrincipaisVO(SUM(oc.quantidade),c.nome) FROM Ordem o " +
                 " JOIN o.listaOrdemCardapio oc " +
                 " JOIN oc.cardapio c " +
                 " group by c.nome " +
                 " ORDER BY SUM(oc.quantidade) DESC";
-        return this.entityManager.createQuery(sql, Object[].class).getResultList();
+        return this.entityManager.createQuery(sql, ItensPrincipaisVO.class).getResultList();
 
+    }
+
+    public Ordem joinFetchCliente(Integer id) {
+        String sql = "SELECT o FROM Ordem o JOIN FETCH o.cliente WHERE o.id = :id";
+        List<Ordem> ordens = this.entityManager.createQuery(sql, Ordem.class)
+                .setParameter("id", id)
+                .getResultList();
+
+        if (ordens.isEmpty()) {
+            return null; // ou lance uma exceção personalizada, se preferir
+        } else {
+            return ordens.get(0); // Retorna a primeira ordem encontrada
+        }
     }
 }

@@ -17,7 +17,7 @@ public class Endereco {
     private String uf;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     public Endereco(){}
@@ -106,7 +106,7 @@ public class Endereco {
                 ", bairro='" + bairro + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", uf='" + uf + '\'' +
-                ", cliente=" + cliente +
+
                 '}';
     }
 }

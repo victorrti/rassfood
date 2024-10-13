@@ -9,9 +9,9 @@ public class OrdemCardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Ordem ordem;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cardapio cardapio;
     private BigDecimal valor;
     private Integer quantidade;
